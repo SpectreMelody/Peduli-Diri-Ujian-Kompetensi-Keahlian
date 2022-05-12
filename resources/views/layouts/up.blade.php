@@ -51,7 +51,7 @@
 
   <div class="form-group">
     <label for="nik">NIK</label>
-    <input id="nik" type="text" class="form-control" name="nik" tabindex="3" required autofocus>
+    <input id="nik" type="text" inputmode="numeric" class="form-control" name="nik" tabindex="3" required autofocus>
     <div class="invalid-feedback">
       NIK wajib diisi
     </div>

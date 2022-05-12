@@ -26,6 +26,7 @@ Route::get('/',[dashboardController::class,'Dashboard'])->middleware('auth');
 Route::get('/input-perjalanan',[perjalananController::class,'InputPerjalananPage'])->middleware('auth');
 Route::post('/simpanPerjalanan',[perjalananController::class,'SimpanPerjalanan'])->middleware('auth');
 Route::post('/deletePerjalanan',[perjalananController::class,'DeletePerjalanan'])->middleware('auth');
+Route::post('/editPerjalanan',[perjalananController::class,'EditPerjalanan'])->middleware('auth');
 Route::get('/perjalanan',[perjalananController::class,'Perjalanan'])->middleware('auth');
 Route::get('/search',[perjalananController::class,'SearchPerjalanan'])->middleware('auth');
 

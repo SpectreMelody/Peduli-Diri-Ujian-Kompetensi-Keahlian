@@ -53,6 +53,23 @@ class perjalananController extends Controller
         // dd($data);
     }
 
+    public function EditPerjalanan(Request $request){
+        $data=[
+            'tanggal'=>$request->tanggal,
+            'waktu'=>$request->waktu,
+            'provinsi'=>$request->provinsi,
+            'lokasi'=>$request->lokasi,
+            'suhu'=>$request->suhu,
+            'id_user'=>auth()->user()->id,
+        ];
+
+        DB::table('perjalanans')
+              ->where('id', $request->edit)
+              ->update($data);
+        Alert::toast('Perjalanan Berhasil Di Edit!','succes')->position('top-end');
+        return back();
+    }
+
     public function Perjalanan(){
         if (Auth::check()){
         // $data = Perjalanan::all();

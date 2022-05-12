@@ -37,7 +37,7 @@
           <div class="form-group" style="width:37%">
             <label>Suhu</label>
             <div class="input-group">
-              <input type="number" class="form-control"  style="text-align: center;" name="suhu" tabindex="1" required autofocus>
+              <input type="number" class="form-control"  style="text-align: center;" min="16" max="48" name="suhu" tabindex="1" required autofocus>
               <div class="input-group-append">
                 <span class="input-group-text">℃</span>
               </div>

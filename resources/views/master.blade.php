@@ -52,24 +52,21 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin Logout?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
         </div>
         <div class="modal-body">Anda harus memasukkan kembali data akun anda pada halaman Login apabila anda memutuskan untuk Logout. </div>
         <div class="modal-footer">
-          <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
+          <button class="btn btn-light" type="button" data-dismiss="modal">Back</button>
           <a class="btn btn-danger" href="/logout">Logout</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+  {{-- <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
       <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-900"></i>
       Logout
     </a>
-  </div>
+  </div> --}}
   @include('sweetalert::alert')
 </body>
 </html>

@@ -19,7 +19,7 @@ $no = 1
         <th scope="col" >Provinsi</th>
         <th scope="col" >Lokasi</th>
         <th scope="col" >Suhu</th>
-        <th scope="col" >Action</th>
+        <th scope="col" style="text-align: center;">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -31,14 +31,99 @@ $no = 1
       <td>{{ $item->provinsi }}</td>
       <td>{{ $item->lokasi }}</td>
       <td>{{ $item->suhu }}℃</td>
-      <td>
-        <form method="POST" action="/deletePerjalanan" class="needs-validation">
-          {{-- @method('delete') --}}
-          {{ csrf_field() }}
-          <button name="delete" id="delete" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger align-center" type="submit" value="{{ $item->id }}" style="color:#fff; :75px; height:35px;">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </button>
-        </form>
+     
+      <td style="text-align: center;">
+        {{-- edit action --}}
+            <button data-toggle="modal" data-target="#editModal{{ $item->id }}" class="btn btn-warning align-center" style="color:#fff; :75px; height:35px;">
+              <i class="fa fa-cog" aria-hidden="true"></i> 
+            </button>
+          {{-- edit modal --}}
+            <div class="modal fade" style ="transform: translateY(10%);" data-backdrop="false" id="editModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" style="z-index:1041;" role="document">
+                <div class="modal-content align-items-center" style="z-index:1042;">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin Edit Data Ini?<br>
+                      <i><span style="font-size: 15px;">~Ganti Data yang ingin Di Edit saja!~</span></i>
+                    </h5>
+                  </div>
+                  <div class="modal-body col-12 col-lg-9 text-left">
+
+                    <form method="POST" action="/editPerjalanan" class="needs-validation" novalidate="">
+                      {{ csrf_field() }}
+                      <div class="d-flex flex-row">
+                        <div class="form-group flex-fill mr-1">
+                          <label>Tanggal</label>
+                          <input type="date" class="form-control" value="{{ $item->tanggal }}" style="text-align: center;" name="tanggal" tabindex="1" required autofocus>    
+                        </div>
+              
+                        <div class="form-group flex-fill">
+                          <label>Waktu</label>
+                          <input type="time" class="form-control"  value="{{ $item->waktu }}" style="text-align: center;" name="waktu" tabindex="1" required autofocus>    
+                        </div>
+                      </div>
+              
+                      <div class="d-flex flex-row">
+                        <div class="form-group flex-fill mr-1">
+                          <label>Provinsi</label>
+                          <select class="form-control" style="text-align: center;" name="provinsi" tabindex="1" required autofocus>
+                            <option value="{{ $item->provinsi }}" selected>{{ $item->provinsi }}</option>
+                            @include('layouts.data.editProvinsi')   
+                          </select>
+                        </div>
+              
+                        <div class="form-group" style="width:37%">
+                          <label>Suhu</label>
+                          <div class="input-group">
+                            <input type="number" class="form-control" value="{{ $item->suhu }}" style="text-align: center;" min="16" max="48" name="suhu" tabindex="1" required autofocus>
+                            <div class="input-group-append">
+                              <span class="input-group-text">℃</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <div class="form-group">
+                        <label>Lokasi</label>
+                        <input type="text" class="form-control" value="{{ $item->lokasi }}" name="lokasi" tabindex="1" required autofocus>  
+                      </div>
+              
+                      <div class="form-group d-flex">
+                        <button type="submit" name="edit" value="{{ $item->id }}" class="btn btn-lg btn-block text-white flex-fill" style="background-color:#77DD76" tabindex="4">
+                          Save
+                        </button>
+                        <button class="btn btn-light flex-fill ml-2" type="button" data-dismiss="modal">Back</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        {{-- delete action --}}
+            <button data-toggle="modal" data-target="#deleteModal{{ $item->id}}" class="btn btn-danger align-center" style="color:#fff; :75px; height:35px;">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          {{-- delete modal --}}
+            <div class="modal fade" style ="transform: translateY(10%);" data-backdrop="false" id="deleteModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" style="z-index:1041;" role="document">
+                <div class="modal-content align-items-center" style="z-index:1042;">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin Delete Data Ini?</h5>
+                  </div>
+                  <div class="modal-body">Data Akan di delete secara Permanent dari akun anda!</div>
+                  <div class="modal-footer">
+                    <button class="btn btn-light" type="button" data-dismiss="modal">Back</button>
+                    <form method="POST" action="/deletePerjalanan" class="needs-validation">
+                      {{-- @method('delete') --}}
+                      {{ csrf_field() }}
+                      <button name="delete" id="delete" class="btn btn-danger align-center" type="submit" value="{{ $item->id }}" style="color:#fff; :75px; height:35px;">
+                        Delete
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
       </td>
     </tr>
     @endforeach
